@@ -56,6 +56,8 @@ dependencies {
 //    implementation(libs.moshi.kotlin.codegen)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.moshi)
+    implementation(libs.compose)
+    implementation(libs.androidx.navigation.compose)
 
     ksp(libs.moshi.kotlin.codegen)
 

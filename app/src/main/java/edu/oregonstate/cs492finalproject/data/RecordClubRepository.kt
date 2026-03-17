@@ -17,14 +17,40 @@ class RecordClubRepository(
         withContext(ioDispatcher) {
             try {
                 val res = service.getReleases(limit, sort)
-                Log.d("fetcher",res.message())
+                Log.d("fetcher", res.message())
                 if (res.isSuccessful) {
                     Result.success(res.body()?.data ?: listOf())
                 } else {
                     Result.failure(Exception(res.errorBody()?.string()))
                 }
             } catch (e: Exception) {
-                Log.d("fetcher",e.message ?: "idk")
+                Log.d("fetcher", e.message ?: "idk")
+                Result.failure(e)
+            }
+        }
+
+    suspend fun searchReleases(
+        limit: Int,
+        query: String,
+    ): Result<List<ReleaseListResult>> =
+        withContext(ioDispatcher) {
+            try {
+                val res = service.searchReleases(
+                    RecordClubSearchBody(
+                        query,
+                        limit,
+                        RecordClubSearchBody.SearchBodyEntities(listOf("albums","eps","singles"))
+                    )
+                )
+                Log.d("fetcher", res.message())
+                Log.d("fetcher", res.toString())
+                if (res.isSuccessful) {
+                    Result.success(res.body()?.data ?: listOf())
+                } else {
+                    Result.failure(Exception(res.errorBody()?.string()))
+                }
+            } catch (e: Exception) {
+                Log.d("fetcher", e.message ?: "idk")
                 Result.failure(e)
             }
         }

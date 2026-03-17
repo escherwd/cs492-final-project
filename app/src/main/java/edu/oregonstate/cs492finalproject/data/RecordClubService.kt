@@ -3,7 +3,9 @@ package edu.oregonstate.cs492finalproject.data
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface RecordClubService {
@@ -22,6 +24,11 @@ interface RecordClubService {
     suspend fun getReleases(
         @Query("limit") limit: Int,
         @Query("sortBy") sortBy: String
+    ): Response<ReleaseListResults>
+
+    @POST("search/v2")
+    suspend fun searchReleases(
+        @Body searchBody: RecordClubSearchBody
     ): Response<ReleaseListResults>
 
     companion object {
