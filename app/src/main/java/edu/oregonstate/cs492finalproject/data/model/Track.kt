@@ -1,4 +1,7 @@
 package edu.oregonstate.cs492finalproject.data.model
 
-class Track {
-}
+data class Track(
+    val number: Int,
+    val title: String,
+    val duration: String? = null
+)
