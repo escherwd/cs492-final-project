@@ -24,7 +24,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import edu.oregonstate.cs492finalproject.data.repository.AlbumRepository
 import edu.oregonstate.cs492finalproject.ui.components.ReleaseRow
+import edu.oregonstate.cs492finalproject.ui.detail.DetailScreen
 import edu.oregonstate.cs492finalproject.ui.navigation.Page
 import edu.oregonstate.cs492finalproject.ui.view_models.ReleasesViewModel
 
@@ -71,7 +73,7 @@ fun HomePage(navigationController: NavController) {
                 modifier = Modifier.padding(paddingValues).verticalScroll(rememberScrollState())
             ) {
                 releases.forEach {
-                    ReleaseRow(it)
+                    ReleaseRow(it, navigationController)
                 }
             }
         }

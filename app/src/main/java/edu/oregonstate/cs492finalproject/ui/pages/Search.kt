@@ -111,7 +111,7 @@ fun SearchPage(navigationController: NavController) {
                     .verticalScroll(rememberScrollState())
             ) {
                 results.forEach {
-                    ReleaseRow(it)
+                    ReleaseRow(it, navigationController)
                 }
             }
         }
